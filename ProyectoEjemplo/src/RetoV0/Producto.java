@@ -80,15 +80,25 @@ public class Producto {
         this.medidasProd = medidasProd;
         this.stockProd = stock;
     }
-    
-    
-    //Métodos
-    
-    
 
+    @Override
+    public String toString() {
+        return "Datos producto: \n"+ 
+                "ID: "+ idProducto + "\n" + 
+                "Nombre: " + nombreProd + "\n" + 
+                "Descripción: " + descriptProd + "\n" + 
+                "Medidas: " + medidasProd + '}';
+    }
     
     
-        
     
-    
+    //Método resta producto del stock
+    public void restaStock (){
+       if(this.stockProd>=1){
+           this.stockProd--;
+       } else{
+           System.out.println("El producto está agotado"); 
+       }
+    }
+       
 }
