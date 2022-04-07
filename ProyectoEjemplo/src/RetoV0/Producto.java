@@ -22,45 +22,45 @@ public class Producto {
         return idProducto;
     }
 
-    public static String getNombreProd() {
+    public String getNombreProd() {
         return nombreProd;
     }
 
-    public static String getDescriptProd() {
+    public String getDescriptProd() {
         return descriptProd;
     }
 
-    public static String getMedidasProd() {
+    public String getMedidasProd() {
         return medidasProd;
     }
 
-    public static int getStockProd() {
+    public int getStockProd() {
         return stockProd;
     }
-
     
     
-
     //Setters
     public static void setIdProducto(int idProducto) {
         Producto.idProducto = idProducto;
     }
 
-    public static void setNombreProd(String nombreProd) {
-        Producto.nombreProd = nombreProd;
+    public void setNombreProd(String nombreProd) {
+        this.nombreProd = nombreProd;
     }
 
-    public static void setDescriptProd(String descriptProd) {
-        Producto.descriptProd = descriptProd;
+    public void setDescriptProd(String descriptProd) {
+        this.descriptProd = descriptProd;
     }
 
-    public static void setMedidasProd(String medidasProd) {
-        Producto.medidasProd = medidasProd;
+    public void setMedidasProd(String medidasProd) {
+        this.medidasProd = medidasProd;
     }
 
-    public static void setStockProd(int stockProd) {
-        Producto.stockProd = stockProd;
+    public void setStockProd(int stockProd) {
+        this.stockProd = stockProd;
     }
+
+    
     
     
     //Constructore sin tener en cuenta el stock, por defecto hay 1 producto
