@@ -56,6 +56,7 @@ public class RetoV0 {
 
         // Prueba de Detalle de usuario
         Usuarios u1 = new Usuarios("Alexander", "Aguirre", "keevinaguirre@gmail.com", "1234");
+        u1.setDireccion("Av. Cesareo Alierta 78");
         System.out.println(u1.toString());
     }
 
