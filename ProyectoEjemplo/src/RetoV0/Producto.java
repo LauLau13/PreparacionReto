@@ -63,7 +63,7 @@ public class Producto {
     
     
     
-    //Constructore sin tener en cuenta el stock, por defecto hay 1 producto
+    //Constructor sin tener en cuenta el stock, por defecto hay 1 producto
     public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd) {
         this.idProducto = idProducto;
         this.nombreProd = nombreProd;
@@ -72,7 +72,7 @@ public class Producto {
         this.stockProd = 1;
     }
     
-    //Constructore teniendo en cuenta el stock
+    //Constructor teniendo en cuenta el stock
     public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
         this.idProducto = idProducto;
         this.nombreProd = nombreProd;
