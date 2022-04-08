@@ -8,29 +8,37 @@ package RetoV0;
  *
  * @author laura
  */
-public class TipoProducto extends Producto{
+public class TipoProducto{
     
     //Atributos:
-    private static int idTipo;
+    private static int idTipo = 0;
     private String nombreTipo;
-
-    public TipoProducto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd) {
-        super(idProducto, nombreProd, descriptProd, medidasProd);
-        this.nombreTipo = nombreTipo;
-    }
-
-    //Constructor todos los parámetros
-    public TipoProducto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
-        super(idProducto, nombreProd, descriptProd, medidasProd, stock);
-        this.nombreTipo = nombreTipo;
-    }
 
     //Constructor nombreTipo
     public TipoProducto(String nombreTipo) {
-        this.idTipo = 1;
+        TipoProducto.idTipo++;
         this.nombreTipo = nombreTipo;
     }
     
+    //Getters
+    public static int getIdTipo() {
+        return idTipo;
+    }
+    
+    public String getNombreTipo() {
+        return nombreTipo;
+    }
+    
+    
+    //Setters
+
+    public static void setIdTipo(int idTipo) {
+        TipoProducto.idTipo = idTipo;
+    }
+
+    public void setNombreTipo(String nombreTipo) {
+        this.nombreTipo = nombreTipo;
+    }
     
     
 }
