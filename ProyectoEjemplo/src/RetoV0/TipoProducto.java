@@ -4,6 +4,8 @@
  */
 package RetoV0;
 
+import java.util.Scanner;
+
 /**
  *
  * @author laura

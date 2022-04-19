@@ -87,6 +87,7 @@ public class Producto extends TipoProducto {
     @Override
     public String toString() {
         return "Datos producto: \n"+ 
+                "Tipo de producto: "+ super.getNombreTipo() + "\n" +
                 "ID: "+ idProd + "\n" + 
                 "Nombre: " + nombreProd + "\n" + 
                 "Descripción: " + descriptProd + "\n" + 
