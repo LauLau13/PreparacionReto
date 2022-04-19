@@ -19,7 +19,11 @@ public class RetoV0 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            //
+        
+        
+        
+
+        //Conectar Java a la BBDD
         try {
             //1.Descargar e instalar el driver
             //2.Agregar el driver al proyecto
@@ -32,17 +36,23 @@ public class RetoV0 {
 
             //Creación de usuario de prueba
             Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
+            
+            up.consultaNewUser();
             up.cambiarDatos();
+            up.toString();
+            up.setDireccion(cadenaConexion);
 
-            String query = "SELECT * FROM USUARIOS";
+            
             
             
             Statement prueba = conexion.createStatement();
             
+            String query = "SELECT * FROM USUARIOS";
+            
             ResultSet rs = prueba.executeQuery(query);
             
             while(rs.next()){
-                System.out.println("Resultado "+ rs.getString("emailUsuario"));
+                System.out.println("Resultado "+ rs.getString("idUsuario"));
             } //Funciona :)
             
             /*4. Crear una sentencia
@@ -58,9 +68,17 @@ public class RetoV0 {
             //7. Manejar los resultados: resultset y métodos getX
              */
             //8. Cerrar la conexión y liberar todos los reculrsos
-            //stmt.close();
+            prueba.close();
             conexion.close();
             //Comprobar en administrador de tareas, sevices si OracleServceXE
+            
+        //Login
+        //Pedir usuario y contraseña
+        //Opciones de menu(modificar, listar, busqueda de productos, comprar producto)
+        
+        //Registrarse
+        //¿Eres admin? --> SI --> pedir codigo de acceso
+        //Usuario normal --> Registro Completo o Simple
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
