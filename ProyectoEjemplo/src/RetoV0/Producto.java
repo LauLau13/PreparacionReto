@@ -159,7 +159,7 @@ public class Producto extends TipoProducto {
     }
     
     /**
-     * Metodo que permite insertar los datos de un tipo de producto en la bbdd
+     * Metodo que permite insertar los datos de un producto en la bbdd
      * 
      * @author: Laura Gil
      */
@@ -175,8 +175,8 @@ public class Producto extends TipoProducto {
                 Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
             
             //4. Generar la query que sentencia INSERT
-                String query = "INSERT INTO PRODUCTO (idProd, nombreProd, descriptProd, medidasProd, idTipo)"
-                        + "VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO PRODUCTO (idProd, nombreProd, descriptProd, medidasProd, stockProd, idTipo)"
+                        + "VALUES (?, ?, ?, ?, ?, ?)";
                 
             //5. Crear el objeto PreparedStatement a partit de la sentencia
                 PreparedStatement stmt = conexion.prepareStatement(query);
@@ -186,7 +186,8 @@ public class Producto extends TipoProducto {
                     stmt.setString(2, this.nombreProd);
                     stmt.setString(3, this.descriptProd);
                     stmt.setString(4, this.medidasProd);
-                    stmt.setInt(5, super.getIdTipo());
+                    stmt.setInt(5, this.stockProd);
+                    stmt.setInt(6, super.getIdTipo());
                 
             //6. Ejecutar la sentencia sql que devuelve un resultset
                 ResultSet rs = stmt.executeQuery(query);
