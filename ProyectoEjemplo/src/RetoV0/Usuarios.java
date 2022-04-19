@@ -207,6 +207,7 @@ public class Usuarios {
             }
 
             modifyField.close();
+            sc.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
