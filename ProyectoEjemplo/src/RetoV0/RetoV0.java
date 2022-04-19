@@ -36,6 +36,7 @@ public class RetoV0 {
 
             String query = "SELECT * FROM USUARIOS";
             
+            
             Statement prueba = conexion.createStatement();
             
             ResultSet rs = prueba.executeQuery(query);
