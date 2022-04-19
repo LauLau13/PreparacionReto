@@ -96,12 +96,16 @@ public class Producto extends TipoProducto {
     
     
     
-    //Método resta producto del stock
+/**
+     * Método resta producto del stock
+     * 
+     * @author: Laura Gil
+     */    
     public void restaStock (){
        if(this.stockProd>=1){
            this.stockProd--;
        } else{
-           System.out.println("El producto está agotado, no se pueden realizar más pedidos");
+           System.out.println("El producto ya no está disponible");
        }
     }
     
