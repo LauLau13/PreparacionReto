@@ -3,6 +3,7 @@ package RetoV0;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -96,7 +97,7 @@ public class Usuarios {
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
             
-            createUser.executeQuery();
+            ResultSet rs = createUser.executeQuery();
             createUser.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
@@ -120,8 +121,6 @@ public class Usuarios {
 
             Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
 
-            String query = "";
-            PreparedStatement modifyField = conexion.prepareStatement(query);
             
 
             Statement commit = conexion.createStatement();
@@ -131,7 +130,9 @@ public class Usuarios {
             System.out
                     .println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
             int opcion = sc.nextInt();
-
+String query = "";
+            PreparedStatement modifyField = conexion.prepareStatement(query);
+            
             while (opcion != 6) {
                 switch (opcion) {
                     case 1:

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author laura
+ * @author Laura, Alex, Sandra
  */
 public class RetoV0 {
 
@@ -32,7 +32,7 @@ public class RetoV0 {
 
             //Creación de usuario de prueba
             Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
-            up.cambiarDatos();
+            //up.cambiarDatos();
 
             String query = "SELECT * FROM USUARIOS";
             
@@ -41,7 +41,7 @@ public class RetoV0 {
             ResultSet rs = prueba.executeQuery(query);
             
             while(rs.next()){
-                System.out.println("Resultado "+ rs.getString("nombreUsuario"));
+                System.out.println("Resultado "+ rs.getString("emailUsuario"));
             } //Funciona :)
             
             /*4. Crear una sentencia
