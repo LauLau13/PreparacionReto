@@ -24,9 +24,10 @@ public class Conexion {
         this.conexion = conexion;
     }
 
-    public Conexion(Connection conexion) {
-        this.conexion = conexion;
+    public Conexion() {
     }
+
+    
     
     public void abrirFlujo() throws ClassNotFoundException, SQLException{
         //Descargar e instalar el driver
