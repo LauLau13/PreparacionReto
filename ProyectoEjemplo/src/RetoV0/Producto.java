@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author laura
  */
-public class Producto {
+public class Producto extends TipoProducto {
     
     //Atributos
     private static int idProd;
@@ -64,17 +64,21 @@ public class Producto {
 
     
     //Constructor sin tener en cuenta el stock, por defecto hay 1 producto
-    public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd) {
-        this.idProd = idProducto;
+
+    public Producto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd) {
+        super(nombreTipo);
+        Producto.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
         this.stockProd = 1;
+        
     }
     
     //Constructor teniendo en cuenta el stock
-    public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
-        this.idProd = idProducto;
+    public Producto(String nombreTipo,int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
+        super(nombreTipo);
+        Producto.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
