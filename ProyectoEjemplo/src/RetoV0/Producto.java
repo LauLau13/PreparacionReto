@@ -192,7 +192,7 @@ public class Producto extends TipoProducto {
             //6. Ejecutar la sentencia sql que devuelve un resultset
                 ResultSet rs = stmt.executeQuery(query);
             
-            //9. Cerrar la conexión y liberar todos los reculrsos
+            //7. Cerrar la conexión y liberar todos los reculrsos
                 stmt.close();
                 conexion.close();
                 //Comprobar en administrador de tareas, sevices si OracleServceXE
