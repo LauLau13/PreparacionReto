@@ -11,7 +11,7 @@ package RetoV0;
 public class Producto extends TipoProducto {
     
     //Atributos
-    private static int idProducto;
+    private static int idProd;
     private String nombreProd;
     private String descriptProd;
     private String medidasProd;
@@ -19,7 +19,7 @@ public class Producto extends TipoProducto {
     
     //Getters
     public static int getIdProducto() {
-        return idProducto;
+        return idProd;
     }
 
     public String getNombreProd() {
@@ -41,7 +41,7 @@ public class Producto extends TipoProducto {
     
     //Setters
     public static void setIdProducto(int idProducto) {
-        Producto.idProducto = idProducto;
+        Producto.idProd = idProducto;
     }
 
     public void setNombreProd(String nombreProd) {
@@ -66,7 +66,7 @@ public class Producto extends TipoProducto {
     //Constructor sin tener en cuenta el stock, por defecto hay 1 producto
     public Producto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd) {
         super(nombreTipo);
-        Producto.idProducto = idProducto;
+        Producto.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -77,7 +77,7 @@ public class Producto extends TipoProducto {
     //Constructor teniendo en cuenta el stock
     public Producto(String nombreTipo,int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
         super(nombreTipo);
-        Producto.idProducto = idProducto;
+        Producto.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -87,7 +87,7 @@ public class Producto extends TipoProducto {
     @Override
     public String toString() {
         return "Datos producto: \n"+ 
-                "ID: "+ idProducto + "\n" + 
+                "ID: "+ idProd + "\n" + 
                 "Nombre: " + nombreProd + "\n" + 
                 "Descripción: " + descriptProd + "\n" + 
                 "Medidas: " + medidasProd + '}';
