@@ -19,18 +19,32 @@ public class RetoV0 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        try{
+            //
+        try {
             //1.Descargar e instalar el driver
             //2.Agregar el driver al proyecto
-                //Libraries add jar forlder
-                Class.forName("oracle.jdbc.OracleDriver");
-            
+            //Libraries add jar forlder
+            Class.forName("oracle.jdbc.OracleDriver");
+
             //3.Crear una connexión
-                String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
-                Connection conexion = DriverManager.getConnection(cadenaConexion, "ejemplo", "ejemplo");
+            String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+            Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+
+            //Creación de usuario de prueba
+            Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
+            up.cambiarDatos();
+
+            String query = "SELECT * FROM USUARIOS";
             
-            //4. Crear una sentencia
+            Statement prueba = conexion.createStatement();
+            
+            ResultSet rs = prueba.executeQuery(query);
+            
+            while(rs.next()){
+                System.out.println("Resultado "+ rs.getString("nombreUsuario"));
+            } //Funciona :)
+            
+            /*4. Crear una sentencia
                 Statement stmt = conexion.createStatement();
                 
             //5. Generar la query que es una consulta (borrado, update, insert...)
@@ -41,16 +55,19 @@ public class RetoV0 {
                 ResultSet rs = stmt.executeQuery(query);
             
             //7. Manejar los resultados: resultset y métodos getX
-            
+             */
             //8. Cerrar la conexión y liberar todos los reculrsos
-                stmt.close();
-                conexion.close();
-                //Comprobar en administrador de tareas, sevices si OracleServceXE
-                
-        }catch(Exception e){
+            //stmt.close();
+            conexion.close();
+            //Comprobar en administrador de tareas, sevices si OracleServceXE
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-            
+
+        
+        //swicth
+        
     }
-    
+
 }

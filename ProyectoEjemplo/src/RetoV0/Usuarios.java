@@ -97,7 +97,8 @@ public class Usuarios {
             createUser.setString(5, this.password);
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
-
+            
+            createUser.executeQuery();
             createUser.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
@@ -123,7 +124,7 @@ public class Usuarios {
 
             String query = "";
             PreparedStatement modifyField = conexion.prepareStatement(query);
-            ;
+            
 
             Statement commit = conexion.createStatement();
 
