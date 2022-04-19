@@ -99,6 +99,7 @@ public class Usuarios {
 
             ResultSet rs = createUser.executeQuery();
             createUser.close();
+            conexion.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
