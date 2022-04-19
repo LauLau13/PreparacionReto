@@ -4,6 +4,8 @@
  */
 package RetoV0;
 
+import java.util.Scanner;
+
 /**
  *
  * @author laura
@@ -11,7 +13,7 @@ package RetoV0;
 public class Producto {
     
     //Atributos
-    private static int idProducto;
+    private static int idProd;
     private String nombreProd;
     private String descriptProd;
     private String medidasProd;
@@ -19,7 +21,7 @@ public class Producto {
     
     //Getters
     public static int getIdProducto() {
-        return idProducto;
+        return idProd;
     }
 
     public String getNombreProd() {
@@ -41,7 +43,7 @@ public class Producto {
     
     //Setters
     public static void setIdProducto(int idProducto) {
-        Producto.idProducto = idProducto;
+        Producto.idProd = idProducto;
     }
 
     public void setNombreProd(String nombreProd) {
@@ -61,11 +63,9 @@ public class Producto {
     }
 
     
-    
-    
     //Constructor sin tener en cuenta el stock, por defecto hay 1 producto
     public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd) {
-        this.idProducto = idProducto;
+        this.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -74,7 +74,7 @@ public class Producto {
     
     //Constructor teniendo en cuenta el stock
     public Producto(int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
-        this.idProducto = idProducto;
+        this.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -84,7 +84,7 @@ public class Producto {
     @Override
     public String toString() {
         return "Datos producto: \n"+ 
-                "ID: "+ idProducto + "\n" + 
+                "ID: "+ idProd + "\n" + 
                 "Nombre: " + nombreProd + "\n" + 
                 "Descripción: " + descriptProd + "\n" + 
                 "Medidas: " + medidasProd + '}';
@@ -97,8 +97,41 @@ public class Producto {
        if(this.stockProd>=1){
            this.stockProd--;
        } else{
-           System.out.println("El producto está agotado"); 
+           System.out.println("El producto está agotado, no se pueden realizar más pedidos");
        }
+    }
+    
+    
+    /**
+     * Metodo que permite que el administrador cambie los datos de un producto
+     * 
+     * @author: Laura Gil
+     */
+    public void cambiarDatosProd() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Qué datos del producto deseas cambiar?");
+        System.out.println("1. Nombre \n 2. Descripción \n 3. Medidas \n 4. Stock \n 5.Salir");
+        int opcion = sc.nextInt();
+
+        while (opcion != 5) {
+            switch (opcion) {
+                case 1:
+                    // Modificación del nombre en la ddbb
+                    break;
+                case 2:
+                    // Modificación de la descripción en la ddbb
+                    break;
+                case 3:
+                    // Modificación de las medidas en la ddbb
+                    break;
+                case 4:
+                    // Modificación del stock medidas en la ddbb
+                    break;
+                default:
+                    break;
+            }
+        }
     }
        
 }
