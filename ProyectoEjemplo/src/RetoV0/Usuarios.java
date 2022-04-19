@@ -98,6 +98,7 @@ public class Usuarios {
 
             createUser.executeQuery();
             createUser.close();
+            conexion.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
