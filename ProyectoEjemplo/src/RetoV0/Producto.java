@@ -13,16 +13,17 @@ import java.util.Scanner;
 public class Producto extends TipoProducto {
     
     //Atributos
-    private static int idProd;
+    private int idProd;
     private String nombreProd;
     private String descriptProd;
     private String medidasProd;
     private int stockProd;
     
     //Getters
-    public static int getIdProducto() {
+    public int getIdProd() {
         return idProd;
     }
+    
 
     public String getNombreProd() {
         return nombreProd;
@@ -42,8 +43,8 @@ public class Producto extends TipoProducto {
     
     
     //Setters
-    public static void setIdProducto(int idProducto) {
-        Producto.idProd = idProducto;
+    public void setIdProd(int idProd) {
+        this.idProd = idProd;
     }
 
     public void setNombreProd(String nombreProd) {
@@ -67,7 +68,7 @@ public class Producto extends TipoProducto {
 
     public Producto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd) {
         super(nombreTipo);
-        Producto.idProd = idProducto;
+        this.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -78,7 +79,7 @@ public class Producto extends TipoProducto {
     //Constructor teniendo en cuenta el stock
     public Producto(String nombreTipo,int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
         super(nombreTipo);
-        Producto.idProd = idProducto;
+        this.idProd = idProducto;
         this.nombreProd = nombreProd;
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
@@ -105,7 +106,7 @@ public class Producto extends TipoProducto {
     
     
     /**
-     * Método resta producto del stock
+     * Método que resta 1 producto del stock
      * 
      * @author: Laura Gil
      */    

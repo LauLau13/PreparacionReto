@@ -4,6 +4,12 @@
  */
 package RetoV0;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 /**
@@ -13,19 +19,20 @@ import java.util.Scanner;
 public class TipoProducto{
     
     //Atributos:
-    private static int idTipo = 0;
+    private int idTipo = 0;
     private String nombreTipo;
 
     //Constructor nombreTipo
     public TipoProducto(String nombreTipo) {
-        TipoProducto.idTipo++;
+        this.idTipo++;
         this.nombreTipo = nombreTipo;
     }
     
     //Getters
-    public static int getIdTipo() {
+    public int getIdTipo() {
         return idTipo;
     }
+    
     
     public String getNombreTipo() {
         return nombreTipo;
@@ -34,13 +41,57 @@ public class TipoProducto{
     
     //Setters
 
-    public static void setIdTipo(int idTipo) {
-        TipoProducto.idTipo = idTipo;
+    public void setIdTipo(int idTipo) {
+        this.idTipo = idTipo;
     }
+
 
     public void setNombreTipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
     }
     
+    
+    /**
+     * Metodo que permite insertar los datos de un tipo de producto en la bbdd
+     * 
+     * @author: Laura Gil
+     */
+    public void insertarTipo() {
+        try{
+            //1.Descargar e instalar el driver
+            //2.Agregar el driver al proyecto
+                //Libraries add jar forlder
+                Class.forName("oracle.jdbc.OracleDriver");
+            
+            //3.Crear una connexión
+                String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+                Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+            
+            //4. Generar la query que sentencia INSERT
+                String query = "INSERT INTO PRODUCTO (idTipo, nombreTipo)"
+                        + "VALUES (?, ?)";
+                
+            //5. Crear el objeto PreparedStatement a partit de la sentencia
+                PreparedStatement stmt = conexion.prepareStatement(query);
+                
+
+            //6.Establecer los parámetros
+                    stmt.setInt(1, this.idTipo );
+                    stmt.setString(2, this.nombreTipo);
+                
+            //6. Ejecutar la sentencia sql que devuelve un resultset
+                ResultSet rs = stmt.executeQuery(query);
+            
+            //7. Manejar los resultados: resultset y métodos getX
+            
+            //8. Cerrar la conexión y liberar todos los reculrsos
+                stmt.close();
+                conexion.close();
+                //Comprobar en administrador de tareas, sevices si OracleServceXE
+                
+        }
+        catch(ClassNotFoundException cn){ cn.printStackTrace();}
+        catch(SQLException e) {e.printStackTrace();}
+    }
     
 }
