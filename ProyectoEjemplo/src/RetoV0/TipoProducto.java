@@ -26,6 +26,7 @@ public class TipoProducto{
     public TipoProducto(String nombreTipo) {
         this.idTipo++;
         this.nombreTipo = nombreTipo;
+        this.insertarTipo();
     }
     
     //Getters
