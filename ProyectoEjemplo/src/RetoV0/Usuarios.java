@@ -96,6 +96,7 @@ public class Usuarios {
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
 
+            createUser.executeQuery();
             createUser.close();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
@@ -138,7 +139,7 @@ public class Usuarios {
                         String newName = sc.nextLine();
                         this.nombreUsuario = newName;
                         // Modificación del nombre en la ddbb
-                        query = "UPDATE USUARIOS SET nombreUsuario = ? where idUsuario = ?";
+                        query = "UPDATE USUARIOS SET nombreUsuario = '?' where idUsuario = ?";
                         modifyField = conexion.prepareStatement(query);
                         modifyField.setString(1, newName);
                         modifyField.setInt(2, this.idUsuario);
@@ -146,25 +147,60 @@ public class Usuarios {
                         commit.executeQuery("Commit");
                         break;
                     case 2:
+                        System.out.println("Introduzca el nuevo Apellido: ");
+                        String newApellido = sc.nextLine();
+                        this.apellidoUsuario = newApellido;
                         // Modificación del apellido en la ddbb
+                        query = "UPDATE USUARIOS SET apellidoUsuario = '?' where idUsuario = ?";
+                        modifyField = conexion.prepareStatement(query);
+                        modifyField.setString(1, newApellido);
+                        modifyField.setInt(2, this.idUsuario);
+                        modifyField.executeQuery();
+                        commit.executeQuery("Commit");
                         break;
                     case 3:
-                        // Modificación del emailUsuario en la ddbb
+                        System.out.println("Introduzca el nuevo Email: ");
+                        String newEmail = sc.nextLine();
+                        this.apellidoUsuario = newEmail;
+                        // Modificación del apellido en la ddbb
+                        query = "UPDATE USUARIOS SET emailUsuario = '?' where idUsuario = ?";
+                        modifyField = conexion.prepareStatement(query);
+                        modifyField.setString(1, newEmail);
+                        modifyField.setInt(2, this.idUsuario);
+                        modifyField.executeQuery();
+                        commit.executeQuery("Commit");
                         break;
                     case 4:
                         System.out.println("Introduce tu contraseña actual: ");
                         String passIntroducida = sc.nextLine();
                         if (passIntroducida.equals(this.password)) {
+                            System.out.println("Introduce la nueva contraseña: ");
+                            this.password = sc.nextLine();
                             // Modificar la contraseña
+                            query = "UPDATE USUARIOS SET password = '?' where idUsuario = ?";
+                            modifyField = conexion.prepareStatement(query);
+                            modifyField.setString(1, this.password);
+                            modifyField.setInt(2, this.idUsuario);
+                            modifyField.executeQuery();
+                            commit.executeQuery("Commit");
                         } else {
                             System.out.println("Has introducido la contraseña equivocada");
                         }
                         break;
                     case 5:
                         // Cambiar dirección
+                        System.out.println("Introduzca la nueva direccion: ");
+                        this.direccion = sc.nextLine();
+                        // Modificación del apellido en la ddbb
+                        query = "UPDATE USUARIOS SET direccion = '?' where idUsuario = ?";
+                        modifyField = conexion.prepareStatement(query);
+                        modifyField.setString(1, this.direccion);
+                        modifyField.setInt(2, this.idUsuario);
+                        modifyField.executeQuery();
+                        commit.executeQuery("Commit");
                         break;
                     default:
-
+                        System.out.println("La opción introducida no existe");
                         break;
                 }
             }
