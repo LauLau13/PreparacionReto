@@ -1,10 +1,8 @@
 package RetoV0;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -139,6 +137,7 @@ public class Usuarios {
                     case 1:
                         System.out.println("Introduzca el nuevo nombre: ");
                         String newName = sc.nextLine();
+                        this.nombreUsuario = newName;
                         // Modificación del nombre en la ddbb
                         query = "UPDATE USUARIOS SET nombreUsuario = ? where idUsuario = ?";
                         modifyField = conexion.prepareStatement(query);
