@@ -32,7 +32,7 @@ public class RetoV0 {
 
             //Creación de usuario de prueba
             Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
-            //up.cambiarDatos();
+            up.cambiarDatos();
 
             String query = "SELECT * FROM USUARIOS";
             
