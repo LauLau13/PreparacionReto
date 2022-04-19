@@ -23,7 +23,10 @@ public class Conexion {
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
-    
+
+    public Conexion(Connection conexion) {
+        this.conexion = conexion;
+    }
     
     public void abrirFlujo() throws ClassNotFoundException, SQLException{
         //Descargar e instalar el driver
@@ -33,7 +36,7 @@ public class Conexion {
             
         //Crear una connexión
         String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
-        Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+        conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
     }
     
     public void cerrarFlujo() throws SQLException{
