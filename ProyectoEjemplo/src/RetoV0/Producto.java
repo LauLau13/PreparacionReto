@@ -4,6 +4,11 @@
  */
 package RetoV0;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -73,6 +78,7 @@ public class Producto extends TipoProducto {
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
         this.stockProd = 1;
+        this.insertarProd();
         
     }
     
@@ -84,6 +90,7 @@ public class Producto extends TipoProducto {
         this.descriptProd = descriptProd;
         this.medidasProd = medidasProd;
         this.stockProd = stock;
+        this.insertarProd();
     }
 
     
@@ -149,6 +156,51 @@ public class Producto extends TipoProducto {
                     break;
             }
         }
+    }
+    
+    /**
+     * Metodo que permite insertar los datos de un tipo de producto en la bbdd
+     * 
+     * @author: Laura Gil
+     */
+    public void insertarProd() {
+        try{
+            //1.Descargar e instalar el driver
+            //2.Agregar el driver al proyecto
+                //Libraries add jar forlder
+                Class.forName("oracle.jdbc.OracleDriver");
+            
+            //3.Crear una connexión
+                String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+                Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+            
+            //4. Generar la query que sentencia INSERT
+                String query = "INSERT INTO PRODUCTO (idProd, nombreProd, descriptProd, medidasProd, idTipo)"
+                        + "VALUES (?, ?, ?, ?, ?)";
+                
+            //5. Crear el objeto PreparedStatement a partit de la sentencia
+                PreparedStatement stmt = conexion.prepareStatement(query);
+                
+            //6.Establecer los parámetros
+                    stmt.setInt(1, this.idProd );
+                    stmt.setString(2, this.nombreProd);
+                    stmt.setString(3, this.descriptProd);
+                    stmt.setString(4, this.medidasProd);
+                    stmt.setInt(5, super.getIdTipo());
+                
+            //6. Ejecutar la sentencia sql que devuelve un resultset
+                ResultSet rs = stmt.executeQuery(query);
+            
+            //7. Manejar los resultados: resultset y métodos getX
+            
+            //8. Cerrar la conexión y liberar todos los reculrsos
+                stmt.close();
+                conexion.close();
+                //Comprobar en administrador de tareas, sevices si OracleServceXE
+                
+        }
+        catch(ClassNotFoundException cn){ cn.printStackTrace();}
+        catch(SQLException e) {e.printStackTrace();}
     }
        
 }
