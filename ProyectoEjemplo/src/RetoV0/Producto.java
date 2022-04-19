@@ -85,19 +85,26 @@ public class Producto extends TipoProducto {
         this.stockProd = stock;
     }
 
+    
+    /**
+     * Método que lista toda la información de un producto
+     * 
+     * @author: Laura Gil
+     */ 
     @Override
     public String toString() {
         return "Datos producto: \n"+ 
                 "Tipo de producto: "+ super.getNombreTipo() + "\n" +
                 "ID: "+ idProd + "\n" + 
                 "Nombre: " + nombreProd + "\n" + 
-                "Descripción: " + descriptProd + "\n" + 
-                "Medidas: " + medidasProd + '}';
+                "Descripción: " + descriptProd + "\n" +
+                "Medidas: " + medidasProd + "\n" +
+                "Stock: " + stockProd + '}';
     }
     
     
     
-/**
+    /**
      * Método resta producto del stock
      * 
      * @author: Laura Gil
