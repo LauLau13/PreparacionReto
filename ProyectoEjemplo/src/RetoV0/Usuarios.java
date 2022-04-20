@@ -2,7 +2,6 @@ package RetoV0;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -102,7 +101,7 @@ public class Usuarios {
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
 
-            ResultSet rs = createUser.executeQuery();
+            createUser.executeQuery();
             createUser.close();
             C1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
