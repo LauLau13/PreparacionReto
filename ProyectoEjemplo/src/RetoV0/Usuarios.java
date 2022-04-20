@@ -128,10 +128,9 @@ public class Usuarios {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("¿Qué datos deseas cambiar?");
-            System.out
-                    .println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
+            System.out.println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
             int opcion = sc.nextInt();
-String query = "";
+            String query = "";
             PreparedStatement modifyField = conexion.prepareStatement(query);
             
             while (opcion != 6) {

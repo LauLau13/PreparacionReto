@@ -19,9 +19,6 @@ public class RetoV0 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        
-        
 
         //Conectar Java a la BBDD
         try {
@@ -35,19 +32,18 @@ public class RetoV0 {
             Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
 
             //Creación de usuario de prueba
-            Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
+            //Usuarios up = new Usuarios("Usuario", "Prueba", "up@up.com", "123456");
             
-            up.consultaNewUser();
-            up.cambiarDatos();
-            up.toString();
-            up.setDireccion(cadenaConexion);
+           // up.consultaNewUser();
+            //up.cambiarDatos();
+            //up.toString();
+            //up.setDireccion(cadenaConexion);
 
+            String query = "SELECT * FROM USUARIOS";
             
-            
+            String query1 = "SELECT COUNT(*) FROM USUARIOS";            
             
             Statement prueba = conexion.createStatement();
-            
-            String query = "SELECT * FROM USUARIOS";
             
             ResultSet rs = prueba.executeQuery(query);
             
