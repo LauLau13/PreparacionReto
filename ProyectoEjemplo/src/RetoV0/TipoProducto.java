@@ -7,10 +7,7 @@ package RetoV0;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
 
 /**
  *
@@ -81,12 +78,14 @@ public class TipoProducto{
                     stmt.setString(2, this.nombreTipo);
                 
             //6. Ejecutar la sentencia sql que devuelve un resultset
-                ResultSet rs = stmt.executeQuery(query);
+                stmt.executeQuery(query);
             
             //7. Cerrar la conexión y liberar todos los reculrsos
                 stmt.close();
                 conexion.close();
+                
                 //Comprobar en administrador de tareas, sevices si OracleServceXE
+                
                 
         }
         catch(ClassNotFoundException cn){ cn.printStackTrace();}

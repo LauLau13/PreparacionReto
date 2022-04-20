@@ -30,6 +30,7 @@ public class RetoV0 {
             // 4. Crear una sentencia
             Statement stmt = conexion.conexion.createStatement();
 
+
             //Borrar registros DE TODAS LAS TABLAS
             String queryTest = "SELECT COUNT(*) FROM USUARIOS";
             
@@ -58,11 +59,15 @@ public class RetoV0 {
                 
             System.out.println("Funciona Correcto");
 
+
+            // String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
+
             // 5. Generar la query que es una consulta (borrado, update, insert...)
             /*
              * String query = "INSERT INTO personas (dni, nombre, apellido, edad)"
              * + "VALUES (766666, 'Laura', 'Perez', 22)";
              */
+
            
             System.out.println("---------------------------------------------");
             System.out.println("----------- MENU --------------");
@@ -92,21 +97,23 @@ public class RetoV0 {
             System.out.println("----Insertamos un usuario----");
             Usuarios us = new Usuarios("Prueba", "Usuario1", "a@a.com", "1234");
             
+
             String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
 
             // 6. Ejecutar la sentencia sql que devuelve un resultset
             ResultSet rs = stmt.executeQuery(query);
 
             // 7. Manejar los resultados: resultset y métodos getX
-            int cont = 1;
+
             while (rs.next()) {
                 System.out.println("Objetos de la tabla: ");
                 System.out.println("ID Usuario: " + rs.getInt("idUsuario"));
                 System.out.println("Nombre: " + rs.getString("nombreUsuario"));
                 System.out.println("Apellido: " + rs.getString("apellidoUsuario"));
+
                 System.out.println("Email: " + rs.getString("emailUsuario"));
                 System.out.println("Direccion: " + rs.getString("direccion"));
-                cont++;
+
             }
             
             // 8. Cerrar la conexión y liberar todos los reculrsos

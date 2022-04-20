@@ -2,7 +2,6 @@ package RetoV0;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -15,7 +14,8 @@ public class Usuarios {
     private String emailUsuario;
     private String password;
     private String direccion;
-    private boolean esAdmin = false;
+    // 0 es false, 1 es true
+    private int esAdmin = 0;
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
@@ -54,7 +54,7 @@ public class Usuarios {
         this.emailUsuario = emailUsuario;
         this.password = password;
         this.direccion = direccion;
-        this.esAdmin = esAdmin;
+        this.esAdmin = 1;
         this.consultaNewUser();
         idUsuario++;
     }
@@ -66,7 +66,7 @@ public class Usuarios {
         this.apellidoUsuario = apellidoUsuario;
         this.emailUsuario = emailUsuario;
         this.password = password;
-        this.esAdmin = esAdmin;
+        this.esAdmin = 1;
         this.consultaNewUser();
         idUsuario++;
     }
@@ -77,34 +77,36 @@ public class Usuarios {
      */
     public void consultaNewUser() {
         try {
-            
-            Conexion C1 = new Conexion();
-            C1.abrirFlujo();
-            /*Class.forName("oracle.jdbc.OracleDriver");
 
-            String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+            Conexion c1 = new Conexion();
+            c1.abrirFlujo();
+            /*
+             * Class.forName("oracle.jdbc.OracleDriver");
+             * 
+             * String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+             * 
+             * Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA",
+             * "RETOJAVA");
+             */
 
-            Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
-            */
-            
-            //Downcasting
-            Connection conexion = C1.getConexion();
-            
             String query = "INSERT INTO USUARIOS VALUES(? ,? ,? ,? ,? ,? ,? )";
 
-            PreparedStatement createUser = conexion.prepareStatement(query);
+            PreparedStatement createUser = c1.conexion.prepareStatement(query);
+            Statement commitStatement = c1.conexion.createStatement();
 
+            String commit = "COMMIT";
             createUser.setInt(1, this.idUsuario);
             createUser.setString(2, this.nombreUsuario);
             createUser.setString(3, this.apellidoUsuario);
             createUser.setString(4, this.emailUsuario);
             createUser.setString(5, this.password);
             createUser.setString(6, this.direccion);
-            createUser.setBoolean(7, this.esAdmin);
+            createUser.setInt(7, this.esAdmin);
 
-            ResultSet rs = createUser.executeQuery();
+            createUser.executeQuery();
+            commitStatement.executeQuery(commit);
             createUser.close();
-            C1.cerrarFlujo();
+            c1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
@@ -123,27 +125,18 @@ public class Usuarios {
 
             Conexion C1 = new Conexion();
             C1.abrirFlujo();
-            /*Class.forName("oracle.jdbc.OracleDriver");
-
-            String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
-
-            Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
-            */
-            
-            //Downcasting
             Connection conexion = C1.getConexion();
-
-            
 
             Statement commit = conexion.createStatement();
 
             Scanner sc = new Scanner(System.in);
             System.out.println("¿Qué datos deseas cambiar?");
-            System.out.println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
+            System.out
+                    .println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
             int opcion = sc.nextInt();
             String query = "";
             PreparedStatement modifyField = conexion.prepareStatement(query);
-            
+
             while (opcion != 6) {
                 switch (opcion) {
                     case 1:
