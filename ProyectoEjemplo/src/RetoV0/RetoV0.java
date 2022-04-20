@@ -28,14 +28,14 @@ public class RetoV0 {
             conexion.abrirFlujo();
             // 4. Crear una sentencia
             Statement stmt = conexion.conexion.createStatement();
-
+            
+            //String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
             // 5. Generar la query que es una consulta (borrado, update, insert...)
             /*
              * String query = "INSERT INTO personas (dni, nombre, apellido, edad)"
              * + "VALUES (766666, 'Laura', 'Perez', 22)";
              */
-            //String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
-            String query = "DESCRIBE USUARIOS";
+            String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
             
             // 6. Ejecutar la sentencia sql que devuelve un resultset
             ResultSet rs = stmt.executeQuery(query);
