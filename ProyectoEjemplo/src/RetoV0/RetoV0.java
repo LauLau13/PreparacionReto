@@ -43,7 +43,10 @@ public class RetoV0 {
             // 7. Manejar los resultados: resultset y métodos getX
             int cont = 1;
             while (rs.next()) {
-                System.out.println("Objetos de la tabla: " + rs.getString(cont));
+                System.out.println("Objetos de la tabla: ");
+                System.out.println("ID Usuario: "+rs.getInt("idUsuario"));
+                System.out.println("Nombre: "+rs.getString("nombreUsuario"));
+                System.out.println("Apellido: "+rs.getString("apellidoUsuario"));
                 cont++;
             }
             // 8. Cerrar la conexión y liberar todos los reculrsos
