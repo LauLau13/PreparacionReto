@@ -2,6 +2,7 @@ package RetoV0;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -101,7 +102,7 @@ public class Usuarios {
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
 
-            createUser.executeQuery();
+            ResultSet rs = createUser.executeQuery();
             createUser.close();
             C1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
@@ -132,18 +133,17 @@ public class Usuarios {
             //Downcasting
             Connection conexion = C1.getConexion();
 
-            String query = "";
-            PreparedStatement modifyField = conexion.prepareStatement(query);
-            ;
+            
 
             Statement commit = conexion.createStatement();
 
             Scanner sc = new Scanner(System.in);
             System.out.println("¿Qué datos deseas cambiar?");
-            System.out
-                    .println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
+            System.out.println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
             int opcion = sc.nextInt();
-
+            String query = "";
+            PreparedStatement modifyField = conexion.prepareStatement(query);
+            
             while (opcion != 6) {
                 switch (opcion) {
                     case 1:
