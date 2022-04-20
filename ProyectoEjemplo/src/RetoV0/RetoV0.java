@@ -28,26 +28,26 @@ public class RetoV0 {
             conexion.abrirFlujo();
             // 4. Crear una sentencia
             Statement stmt = conexion.conexion.createStatement();
-            
-            //String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
+
+            // String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
             // 5. Generar la query que es una consulta (borrado, update, insert...)
             /*
              * String query = "INSERT INTO personas (dni, nombre, apellido, edad)"
              * + "VALUES (766666, 'Laura', 'Perez', 22)";
              */
             String query = "SELECT * FROM USUARIOS WHERE idUsuario = 0";
-            
+
             // 6. Ejecutar la sentencia sql que devuelve un resultset
             ResultSet rs = stmt.executeQuery(query);
 
             // 7. Manejar los resultados: resultset y métodos getX
-            int cont = 1;
+
             while (rs.next()) {
                 System.out.println("Objetos de la tabla: ");
-                System.out.println("ID Usuario: "+rs.getInt("idUsuario"));
-                System.out.println("Nombre: "+rs.getString("nombreUsuario"));
-                System.out.println("Apellido: "+rs.getString("apellidoUsuario"));
-                cont++;
+                System.out.println("ID Usuario: " + rs.getInt("idUsuario"));
+                System.out.println("Nombre: " + rs.getString("nombreUsuario"));
+                System.out.println("Apellido: " + rs.getString("apellidoUsuario"));
+
             }
             // 8. Cerrar la conexión y liberar todos los reculrsos
             stmt.close();

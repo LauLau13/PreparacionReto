@@ -7,7 +7,6 @@ package RetoV0;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -16,19 +15,18 @@ import java.util.Scanner;
  * @author laura
  */
 public class Producto extends TipoProducto {
-    
-    //Atributos
+
+    // Atributos
     private int idProd;
     private String nombreProd;
     private String descriptProd;
     private String medidasProd;
     private int stockProd;
-    
-    //Getters
+
+    // Getters
     public int getIdProd() {
         return idProd;
     }
-    
 
     public String getNombreProd() {
         return nombreProd;
@@ -45,9 +43,8 @@ public class Producto extends TipoProducto {
     public int getStockProd() {
         return stockProd;
     }
-    
-    
-    //Setters
+
+    // Setters
     public void setIdProd(int idProd) {
         this.idProd = idProd;
     }
@@ -68,8 +65,7 @@ public class Producto extends TipoProducto {
         this.stockProd = stockProd;
     }
 
-    
-    //Constructor sin tener en cuenta el stock, por defecto hay 1 producto
+    // Constructor sin tener en cuenta el stock, por defecto hay 1 producto
 
     public Producto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd) {
         super(nombreTipo);
@@ -79,11 +75,12 @@ public class Producto extends TipoProducto {
         this.medidasProd = medidasProd;
         this.stockProd = 1;
         this.insertarProd();
-        
+
     }
-    
-    //Constructor teniendo en cuenta el stock
-    public Producto(String nombreTipo,int idProducto, String nombreProd, String descriptProd, String medidasProd, int stock) {
+
+    // Constructor teniendo en cuenta el stock
+    public Producto(String nombreTipo, int idProducto, String nombreProd, String descriptProd, String medidasProd,
+            int stock) {
         super(nombreTipo);
         this.idProd = idProducto;
         this.nombreProd = nombreProd;
@@ -93,39 +90,35 @@ public class Producto extends TipoProducto {
         this.insertarProd();
     }
 
-    
     /**
      * Método que lista toda la información de un producto
      * 
      * @author: Laura Gil
-     */ 
+     */
     @Override
     public String toString() {
-        return "Datos producto: \n"+ 
-                "Tipo de producto: "+ super.getNombreTipo() + "\n" +
-                "ID: "+ idProd + "\n" + 
-                "Nombre: " + nombreProd + "\n" + 
+        return "Datos producto: \n" +
+                "Tipo de producto: " + super.getNombreTipo() + "\n" +
+                "ID: " + idProd + "\n" +
+                "Nombre: " + nombreProd + "\n" +
                 "Descripción: " + descriptProd + "\n" +
                 "Medidas: " + medidasProd + "\n" +
                 "Stock: " + stockProd + '}';
     }
-    
-    
-    
+
     /**
      * Método que resta 1 producto del stock
      * 
      * @author: Laura Gil
-     */    
-    public void restaStock (){
-       if(this.stockProd>=1){
-           this.stockProd--;
-       } else{
-           System.out.println("El producto ya no está disponible");
-       }
+     */
+    public void restaStock() {
+        if (this.stockProd >= 1) {
+            this.stockProd--;
+        } else {
+            System.out.println("El producto ya no está disponible");
+        }
     }
-    
-    
+
     /**
      * Metodo que permite que el administrador cambie los datos de un producto
      * 
@@ -156,50 +149,53 @@ public class Producto extends TipoProducto {
                     break;
             }
         }
+        sc.close();
     }
-    
+
     /**
      * Metodo que permite insertar los datos de un producto en la bbdd
      * 
      * @author: Laura Gil
      */
     public void insertarProd() {
-        try{
-            //1.Descargar e instalar el driver
-            //2.Agregar el driver al proyecto
-                //Libraries add jar forlder
-                Class.forName("oracle.jdbc.OracleDriver");
-            
-            //3.Crear una connexión
-                String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
-                Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
-            
-            //4. Generar la query que sentencia INSERT
-                String query = "INSERT INTO PRODUCTO (idProd, nombreProd, descriptProd, medidasProd, stockProd, idTipo)"
-                        + "VALUES (?, ?, ?, ?, ?, ?)";
-                
-            //5. Crear el objeto PreparedStatement a partit de la sentencia
-                PreparedStatement stmt = conexion.prepareStatement(query);
-                
-            //6.Establecer los parámetros
-                    stmt.setInt(1, this.idProd );
-                    stmt.setString(2, this.nombreProd);
-                    stmt.setString(3, this.descriptProd);
-                    stmt.setString(4, this.medidasProd);
-                    stmt.setInt(5, this.stockProd);
-                    stmt.setInt(6, super.getIdTipo());
-                
-            //6. Ejecutar la sentencia sql que devuelve un resultset
-                ResultSet rs = stmt.executeQuery(query);
-            
-            //7. Cerrar la conexión y liberar todos los reculrsos
-                stmt.close();
-                conexion.close();
-                //Comprobar en administrador de tareas, sevices si OracleServceXE
-                
+        try {
+            // 1.Descargar e instalar el driver
+            // 2.Agregar el driver al proyecto
+            // Libraries add jar forlder
+            Class.forName("oracle.jdbc.OracleDriver");
+
+            // 3.Crear una connexión
+            String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
+            Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+
+            // 4. Generar la query que sentencia INSERT
+            String query = "INSERT INTO PRODUCTO (idProd, nombreProd, descriptProd, medidasProd, stockProd, idTipo)"
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
+
+            // 5. Crear el objeto PreparedStatement a partit de la sentencia
+            PreparedStatement stmt = conexion.prepareStatement(query);
+
+            // 6.Establecer los parámetros
+            stmt.setInt(1, this.idProd);
+            stmt.setString(2, this.nombreProd);
+            stmt.setString(3, this.descriptProd);
+            stmt.setString(4, this.medidasProd);
+            stmt.setInt(5, this.stockProd);
+            stmt.setInt(6, super.getIdTipo());
+
+            // 6. Ejecutar la sentencia sql que devuelve un resultset
+            stmt.executeQuery(query);
+
+            // 7. Cerrar la conexión y liberar todos los reculrsos
+            stmt.close();
+            conexion.close();
+            // Comprobar en administrador de tareas, sevices si OracleServceXE
+
+        } catch (ClassNotFoundException cn) {
+            cn.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch(ClassNotFoundException cn){ cn.printStackTrace();}
-        catch(SQLException e) {e.printStackTrace();}
     }
-       
+
 }
