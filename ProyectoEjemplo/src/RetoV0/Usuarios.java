@@ -1,8 +1,8 @@
 package RetoV0;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -77,13 +77,19 @@ public class Usuarios {
      */
     public void consultaNewUser() {
         try {
-
-            Class.forName("oracle.jdbc.OracleDriver");
+            
+            Conexion C1 = new Conexion();
+            C1.abrirFlujo();
+            /*Class.forName("oracle.jdbc.OracleDriver");
 
             String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
 
             Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
-
+            */
+            
+            //Downcasting
+            Connection conexion = C1.getConexion();
+            
             String query = "INSERT INTO USUARIOS VALUES(? ,? ,? ,? ,? ,? ,? )";
 
             PreparedStatement createUser = conexion.prepareStatement(query);
@@ -96,9 +102,9 @@ public class Usuarios {
             createUser.setString(6, this.direccion);
             createUser.setBoolean(7, this.esAdmin);
 
-            createUser.executeQuery();
+            ResultSet rs = createUser.executeQuery();
             createUser.close();
-            conexion.close();
+            C1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
@@ -115,24 +121,29 @@ public class Usuarios {
 
         try {
 
-            Class.forName("oracle.jdbc.OracleDriver");
+            Conexion C1 = new Conexion();
+            C1.abrirFlujo();
+            /*Class.forName("oracle.jdbc.OracleDriver");
 
             String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
 
             Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA", "RETOJAVA");
+            */
+            
+            //Downcasting
+            Connection conexion = C1.getConexion();
 
-            String query = "";
-            PreparedStatement modifyField = conexion.prepareStatement(query);
-            ;
+            
 
             Statement commit = conexion.createStatement();
 
             Scanner sc = new Scanner(System.in);
             System.out.println("¿Qué datos deseas cambiar?");
-            System.out
-                    .println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
+            System.out.println("1. Nombre \n 2. Apellido \n 3. emailUsuario \n 4. Contraseña \n 5. Dirección \n 6.Salir");
             int opcion = sc.nextInt();
-
+            String query = "";
+            PreparedStatement modifyField = conexion.prepareStatement(query);
+            
             while (opcion != 6) {
                 switch (opcion) {
                     case 1:
@@ -205,9 +216,9 @@ public class Usuarios {
                         break;
                 }
             }
-
-            modifyField.close();
             sc.close();
+            modifyField.close();
+            C1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
