@@ -4,8 +4,11 @@
  */
 package RetoV0;
 
+import com.sun.xml.internal.stream.Entity;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -90,7 +93,35 @@ public class RetoV0 {
              
             System.out.println("1. Login");
             System.out.println("2. Registrate");
-            
+            Scanner sc = new Scanner (System.in);
+            //Leer la opcion
+            int op=sc.nextInt();
+            //Lista usuarios existentes
+            ArrayList <Usuarios> listaExistentes = new ArrayList <>();
+            //Elegir opcion 1 o 2
+            switch(op){
+                case 1:
+                    //Login
+                    System.out.println("Login");
+                    //El Usuario lo buscamos por el email
+                    System.out.println("Pon tu email");
+                    String usuario = sc.nextLine();
+                    for (Usuarios usuarioExistente : listaExistentes) {
+                        if (usuario.equals(usuarioExistente.getEmailUsuario())) {
+                            System.out.println("Pon tu password");
+                            String pass = sc.nextLine();
+                            if (pass.equals(usuarioExistente.getPassword())) {
+                                System.out.println("Correcto, ya puedes acceder");
+                            }
+                        }
+                    }
+                    
+                case 2:
+                    //Registrate
+                    System.out.println("Vamos a crera un nuevo usuario");
+                    
+            }
+                    
             
             
             System.out.println("---------------------------------------------");
@@ -110,10 +141,8 @@ public class RetoV0 {
                 System.out.println("ID Usuario: " + rs.getInt("idUsuario"));
                 System.out.println("Nombre: " + rs.getString("nombreUsuario"));
                 System.out.println("Apellido: " + rs.getString("apellidoUsuario"));
-
                 System.out.println("Email: " + rs.getString("emailUsuario"));
                 System.out.println("Direccion: " + rs.getString("direccion"));
-
             }
             
             // 8. Cerrar la conexión y liberar todos los reculrsos
@@ -121,7 +150,6 @@ public class RetoV0 {
             conexion.cerrarFlujo();
             // Comprobar en administrador de tareas, sevices si OracleServceXE
 
-           
             
         } catch (Exception e) {
             System.out.println(e.getMessage());

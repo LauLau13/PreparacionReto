@@ -20,6 +20,16 @@ public class Usuarios {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    
     // Constructor de usuarios normales
     // Con dirección
 
