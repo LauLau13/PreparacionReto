@@ -78,8 +78,8 @@ public class Usuarios {
     public void consultaNewUser() {
         try {
 
-            Conexion C1 = new Conexion();
-            C1.abrirFlujo();
+            Conexion c1 = new Conexion();
+            c1.abrirFlujo();
             /*
              * Class.forName("oracle.jdbc.OracleDriver");
              * 
@@ -89,13 +89,12 @@ public class Usuarios {
              * "RETOJAVA");
              */
 
-            // Downcasting
-            Connection conexion = C1.getConexion();
-
             String query = "INSERT INTO USUARIOS VALUES(? ,? ,? ,? ,? ,? ,? )";
 
-            PreparedStatement createUser = conexion.prepareStatement(query);
+            PreparedStatement createUser = c1.conexion.prepareStatement(query);
+            Statement commitStatement = c1.conexion.createStatement();
 
+            String commit = "COMMIT";
             createUser.setInt(1, this.idUsuario);
             createUser.setString(2, this.nombreUsuario);
             createUser.setString(3, this.apellidoUsuario);
@@ -105,8 +104,9 @@ public class Usuarios {
             createUser.setInt(7, this.esAdmin);
 
             createUser.executeQuery();
+            commitStatement.executeQuery(commit);
             createUser.close();
-            C1.cerrarFlujo();
+            c1.cerrarFlujo();
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
         } catch (SQLException e) {
@@ -125,16 +125,6 @@ public class Usuarios {
 
             Conexion C1 = new Conexion();
             C1.abrirFlujo();
-            /*
-             * Class.forName("oracle.jdbc.OracleDriver");
-             * 
-             * String cadenaConexion = "jdbc:oracle:thin:@localhost:1521/XE";
-             * 
-             * Connection conexion = DriverManager.getConnection(cadenaConexion, "RETOJAVA",
-             * "RETOJAVA");
-             */
-
-            // Downcasting
             Connection conexion = C1.getConexion();
 
             Statement commit = conexion.createStatement();
